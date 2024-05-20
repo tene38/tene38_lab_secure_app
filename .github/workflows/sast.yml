@@ -33,3 +33,11 @@ jobs:
             -e "BRANCH=${{ steps.vars.outputs.branch }}" \
             -v "$GITHUB_WORKSPACE:/opt/sources" \
             mixeway/scanner:latest
+      - name: Check Report
+        shell: bash
+        run: |
+          if [[ $(jq length "$GITHUB_WORKSPACE/mixeway_sast_report.json") -ne 0 ]]; then 
+            false
+          else 
+            true
+          fi
