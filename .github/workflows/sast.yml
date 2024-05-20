@@ -21,15 +21,15 @@ jobs:
           SONATYPE_USER: ${{ secrets.SONATYPE_EMAIL }}
           SONATYPE_KEY: ${{ secrets.SONATYPE_TOKEN }}
         run: |
-          docker run 
-            -e "OSS_USERNAME=$SONATYPE_USER"
-            -e "OSS_KEY=$SONATYPE_KEY"
-            -e "MIXEWAY_URL=https://hub.mixeway.io"
-            -e "MIXEWAY_KEY=$MIXEWAY_KEY"
-            -e "MIXEWAY_PROJECT_ID=148"
-            -e "MODE=STANDALONE"
-            -e "MIXEWAY_PROJECT_NAME=tene38_lab_secure_app"
-            -e "COMMIT_ID=${{ steps.vars.outputs.sha_short }}"
-            -e "BRANCH=${{ steps.vars.outputs.branch }}"
-            -v "$GITHUB_WORKSPACE:/opt/sources"
+          docker run \
+            -e "OSS_USERNAME=$SONATYPE_USER" \
+            -e "OSS_KEY=$SONATYPE_KEY" \
+            -e "MIXEWAY_URL=https://hub.mixeway.io" \
+            -e "MIXEWAY_KEY=$MIXEWAY_KEY" \
+            -e "MIXEWAY_PROJECT_ID=148" \
+            -e "MODE=STANDALONE" \
+            -e "MIXEWAY_PROJECT_NAME=tene38_lab_secure_app" \
+            -e "COMMIT_ID=${{ steps.vars.outputs.sha_short }}" \
+            -e "BRANCH=${{ steps.vars.outputs.branch }}" \
+            -v "$GITHUB_WORKSPACE:/opt/sources" \
             mixeway/scanner:latest
